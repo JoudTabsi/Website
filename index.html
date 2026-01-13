@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>تدريب أولمبياد الرياضيات</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+
+</head>
+<body>
+
+  <div class="header"> تدريب أولمبياد الرياضيات </div>
+
+  <!-- === Home Section === -->
+  <div class="main" id="home-section">
+    <div class="menu">
+      <button class="papers-btn" id="papersToggle"> أسئلة السنوات السابقة ▼</button>
+      <div class="sub-menu" id="subMenu">
+        <button class="sub-btn sghar" id="show-sub-btn-sghar">صِغار</button>
+        <button class="sub-btn yafeen" id="show-sub-btn-yafeen">يافعين</button>
+        <button class="sub-btn awasher" id="show-sub-btn-awasher">عواشر</button>
+      </div>
+      <button class="theorems-btn" id="show-theorems-btn">النظريات المهمة</button>
+      <button class="questions-btn" id="show-questions-btn">أسئلة تدريبية</button>
+      <button class="questions-btn" id="show-favorites-btn">الأسئلة المفضلة</button>
+    </div>
+  </div>
+
+  <!-- === Questions Section === -->
+  <div id="question-section">
+    <div id="filter-container">
+      <label for="filter"> تصفية الأسئلة: </label>
+      <select id="filter">
+        <option value="all"> الكل </option>
+        <option value="unsolved">❓ لم يتم حلُها </option>
+        <option value="correct">✅ صحيحة </option>
+        <option value="wrong">❌ خاطئة </option>
+      </select>
+    </div>
+
+    <div id="question-list"></div>
+
+    <button id="home-btn-questions">🏠 الرجوع إلى الصفحة الرئيسية</button>
+
+    <div id="question-screen">
+      <h2 id="question-text"></h2>
+      <div id="choices"></div>
+      <div id="feedback"></div>
+      <div id="details"></div>
+      <div id="explain-section"></div>
+      <div class="button-container">
+        <button id="back-btn">⬅️ الرجوع إلى الأسئلة</button>
+        <button id="next-btn" style="display:none">التالي →</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="theorem-section" style="display: none;">
+    <div class="header"> النظريات المهمة</div>
+
+    <div id="theorem-shortcuts">
+      <button data-target="geometry">📐 الهندسة</button>
+      <button data-target="algebra">🔢 الجبر</button>
+      <button data-target="numbers">🧮 نظرية الأعداد</button>
+      <button data-target="combinatorics">📊 التحليل التوافقي</button>
+    </div>
+
+    <div class="theorem-container" id="theorem-container"></div>
+
+    <button id="home-btn-theorems" class="home-btn">🏠 الرجوع إلى الصفحة الرئيسية</button>
+  </section>
+
+  <footer>© 2025 تدريب أولمبياد الرياضيات</footer>
+
+  <script type="module" src="scriptPractice.js"></script>
+</body>
+</html> 

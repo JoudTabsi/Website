@@ -1,0 +1,519 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  background: linear-gradient(to bottom right, #e3f2fd, #f8f9fa);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: #333;
+  min-width: 400px;
+}
+
+/* Header */
+.header {
+  background-color: #3264e6;
+  color: white;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  font-size: 22px;
+  font-weight: bold;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main menu */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.menu button {
+  width: 100%;
+  padding: 16px;
+  font-size: 19px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.menu button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  background-position: right center;
+  opacity: 0.95;
+}
+
+/* Gradient Buttons */
+.papers-btn { background: linear-gradient(135deg, #2962ff, #5895fe); }
+.theorems-btn { background: linear-gradient(135deg, #e53935, #f37954); }
+.questions-btn { background: linear-gradient(135deg, #ff6d00, #ff9500); }
+
+/* Sub-menu  */
+.sub-menu {
+  display: none;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
+  gap: 10px;
+  margin-top: -10px;
+  animation: fadeSlide 0.4s ease;
+}
+
+.sub-btn {
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: white;
+}
+
+.sub-btn.sghar { background: linear-gradient(135deg, #2962ff, #5895fe); }
+.sub-btn.yafeen { background: linear-gradient(135deg, #2962ff, #5895fe); }
+.sub-btn.awasher { background: linear-gradient(135deg, #2962ff, #5895fe); }
+
+.sub-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  opacity: 0.95;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 15px;
+  padding: 14px 0;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Questions Section */
+#question-section { 
+  display: none;
+  width: 100%; 
+  padding: 120px 0 20px 0; 
+}
+#filter-container { 
+  text-align:center; 
+  margin-bottom:15px; 
+}
+#filter { 
+  padding:8px 12px; 
+  border-radius:10px; 
+  border:2px solid #3264e6; 
+  background:white; 
+  color:#3264e6; 
+  font-size:16px; 
+  cursor:pointer; 
+}
+#filter:hover { background:#e8f0ff; }
+#question-list { 
+  margin-top:20px; 
+  text-align:center; 
+}
+.question-title {
+  background:white;
+  border-radius:15px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  padding:15px;
+  margin:12px auto;
+  width:60%;
+  font-size:18px;
+  cursor:pointer;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  transition:0.3s;
+  gap: 10px;
+}
+.question-title:hover { 
+  background:#e8f0ff; 
+  transform:scale(1.03); 
+}
+.status { font-size:20px; }
+#question-screen {
+  display:none;
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);
+  width:80%;
+  margin:40px auto;
+  text-align:center;
+}
+#question-text { 
+  font-size:22px; 
+  font-weight:600; 
+  margin-bottom:20px; 
+}
+.choice-btn { 
+  display:block;
+  margin:10px auto; 
+  padding:10px 25px; 
+  font-size:18px; 
+  border:2px solid #007bff; 
+  background:white; 
+  color:#007bff; 
+  border-radius:10px; 
+  width:60%; 
+  cursor:pointer; 
+  transition:0.3s; 
+}
+.choice-btn:hover { 
+  background:#007bff; 
+  color:white; 
+}
+.choice-btn.selected { 
+  background:#007bff; 
+  color:white; 
+}
+#feedback { 
+  font-size:18px; 
+  margin-top:20px; 
+  min-height:30px; 
+}
+#details { 
+  margin-top:15px; 
+  font-size:17px; 
+  background:#f4f6f8; 
+  padding:12px; 
+  border-radius:10px; 
+  display:none; 
+  text-align:right; 
+  box-shadow:0 2px 8px rgba(0,0,0,0.1); 
+  width:fit-content; 
+  margin:auto; 
+}
+#explain-area { 
+  margin-top:10px; 
+  font-size:17px; 
+  background:#f9f9f9; 
+  padding:10px; 
+  border-radius:10px; 
+  width:70%; 
+  margin:auto; 
+  box-shadow:0 2px 6px rgba(0,0,0,0.1); 
+}
+.button-container { 
+  margin-top:15px; 
+  display:flex; 
+  justify-content:center; 
+  gap:10px; 
+}
+#back-btn { 
+  background:rgb(50,100,230); 
+  color:white; 
+  padding: 12px 28px; 
+  font-size: 17px; 
+  border-radius: 12px; 
+  border: none;
+}
+#back-btn:hover { 
+  opacity:0.8; 
+}
+#next-btn { 
+  background:#4caf50; 
+  color:white; 
+  padding: 12px 28px; 
+  font-size: 17px; 
+  border-radius: 12px; 
+  border: none;
+}
+#next-btn:hover { 
+  background:#43a047; 
+}
+#confirm-btn { 
+  background:linear-gradient(135deg,#002aff,#50d0ea); 
+  color:white; 
+  font-weight:600; 
+  border-radius:12px; 
+  padding:12px 28px; 
+  font-size:17px; 
+  margin:10px auto; 
+  display:block; 
+  transition:0.3s; 
+  border: none;
+}
+#confirm-btn:hover { 
+  transform:translateY(-2px); 
+  opacity:0.95; 
+}
+#explain-btn { 
+  background:linear-gradient(135deg,#070bff,#50afea); 
+  border: none; 
+  color:white; 
+  font-weight:600; 
+  border-radius:12px; 
+  padding:12px 28px; 
+  font-size:17px; 
+  margin:10px auto; 
+  display:block; 
+  transition:0.3s; 
+}
+#home-btn-questions { 
+  background:rgb(50,100,230); 
+  border: none; 
+  color:white; 
+  border-radius:12px; 
+  padding:12px 28px; 
+  font-size:17px; 
+  font-weight:600; 
+  margin:20px auto 0; 
+  display:block; 
+  cursor:pointer; 
+  transition:0.3s; 
+}
+#home-btn-questions:hover { 
+  opacity:0.9; 
+  transform:scale(1.03); 
+}
+
+@media (max-width:600px){
+  .menu button { font-size:17px; padding:14px; }
+  .sub-btn { font-size:15px; padding:9px; }
+  footer { font-size:13px; }
+  .question-title, .choice-btn, #question-screen { width:90%; }
+}
+
+/* === Theorem Section styles === */
+.theorem-container {
+  width: 80%;
+  margin: 20px auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: right;
+}
+
+.category {
+  font-size: 22px;
+  color: #3264e6;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  border-right: 5px solid #3264e6;
+  padding-right: 10px;
+}
+
+.theorem {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.theorem:hover {
+  background-color: #e8f0ff;
+  transform: scale(1.02);
+}
+
+.theorem-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.theorem-content {
+  display: none;
+  margin-top: 10px;
+  font-size: 16px;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 10px;
+  line-height: 1.8;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+/* === Fix layout for Theorem Section == */
+#theorem-section {
+  display: none;
+  text-align: right;
+  padding-top: 100px; /* same as homepage spacing under header */
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom right, #e3f2fd, #f8f9fa);
+}
+
+#theorem-section .theorem-container {
+  width: 85%;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+}
+
+/* === Home Button style for Theorem Section === */
+#home-btn-theorems {
+  background-color: rgb(50, 100, 230);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 30px auto;
+  display: block;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#home-btn-theorems:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+/* === Theorem Shortcuts Bar === */
+#theorem-shortcuts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+#theorem-shortcuts button {
+  background-color: #3264e6;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#theorem-shortcuts button:hover {
+  background-color: #274ec7;
+  transform: scale(1.05);
+}
+
+/* === Star (Favorite) Button === */
+.star-btn {
+  cursor: pointer;
+  font-size: 28px; /* larger */
+  color: gray;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.star-btn.active {
+  color: gold;
+}
+
+#show-favorites-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 19px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #ffdd57, #ffc107); /* gradient like other buttons */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+#show-favorites-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  opacity: 0.95;
+}
+
+#question-text img {
+  width: 100%;
+  max-width: 360px;     /* slightly smaller than explanation images */
+  max-height: 50vh;
+  height: auto;
+  display: block;
+  margin: 8px auto;
+}
+
+
+#question-text img.small-diagram {
+  max-width: 15%;
+}
+
+#question-text span span.mjx-chtml,
+#explain-section span span.mjx-chtml {
+  display: inline-block;   /* allows block-like wrapping */
+  max-width: 100%;         /* prevents overflow */
+  overflow-wrap: break-word; 
+  direction: ltr;          /* keeps math left-to-right */
+}
+
+#explain-section img {
+  max-width: 100%;
+  max-height: 60vh;     /* this prevents tall images */
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+}

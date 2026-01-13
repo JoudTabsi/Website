@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> تسجيل الدخول إلى الموقع </title>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        background-color: #f5f7fb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333;
+      }
+      * { 
+        margin:0; 
+        padding:0; 
+        box-sizing:border-box; 
+        border:none; 
+        outline:none; 
+      }
+      #content_container { 
+        width: 380px; 
+        background:#fff; 
+        border-radius:10px; 
+        box-shadow:0 4px 20px rgba(0,0,0,0.1); 
+        overflow:hidden; 
+      }
+      #form_container { 
+        width:100%; 
+        height:100%; 
+        padding:30px 25px; 
+      }
+      #form_header_container { 
+        text-align:center; 
+        margin-bottom:25px; 
+      }
+      #form_header { 
+        font-size:20px; 
+        font-weight:700; 
+        color:rgb(50,100,230);
+        text-transform:uppercase;
+        letter-spacing:1px; 
+      }
+      #form_content_container { 
+        display:flex; 
+        justify-content:center; 
+      }
+      #form_content_inner_container {
+        width:100%; 
+        display:flex; 
+        flex-direction:column; 
+      }
+      input { 
+        width:100%; 
+        height:42px; 
+        padding:0 12px; 
+        border:1px solid #ccc; 
+        border-radius:6px; 
+        font-size:14px; 
+        margin-bottom:15px; 
+        transition:border-color 0.3s, box-shadow 0.3s; 
+      }
+      input:focus { 
+        border-color:rgb(50,100,230);
+        box-shadow:0 0 5px rgba(50,100,230,0.3); 
+      }
+      #button_container { 
+        display:flex; 
+        gap:10px; 
+        margin-top:10px; 
+      }
+      #button_container button { 
+        flex:1; 
+        height:42px; 
+        background-color:rgb(50,100,230); 
+        color:#fff; 
+        border-radius:6px; 
+        font-size:14px; 
+        font-weight:600; 
+        cursor:pointer; 
+        transition: background-color 0.3s, transform 0.1s; 
+      }
+      #button_container button:hover { 
+        background-color:rgb(40,85,200); 
+      }
+      #button_container button:active { 
+        transform:scale(0.97); 
+      }
+      @media (max-width:480px){ 
+        #content_container{ width:90%; box-shadow:none; } 
+        #form_header{ font-size:18px; } input, 
+        #button_container button{ font-size:13px; } 
+      }
+      #error_message, #error_message_signup { 
+        color:red; 
+        font-size:13px; 
+        text-align:center; 
+        margin-bottom:10px; 
+        min-height:18px; 
+      }
+      #form_message, #form_message_signup { 
+        color:green; 
+        margin-top:10px; 
+        font-weight:bold; 
+        text-align:center; 
+        min-height:18px; 
+      }
+      .password-container { 
+        position:relative; 
+        width:100%; 
+      }
+      .password-container input { 
+        width:100%; 
+        padding-right:35px; 
+        height:42px; 
+        box-sizing:border-box; 
+      }
+      .toggle-eye { 
+        position:absolute; 
+        top:40%; 
+        right:10px; 
+        transform:translateY(-50%); 
+        display:flex; 
+        align-items:center; 
+        justify-content:center; 
+        background:transparent; 
+        border:none; 
+        cursor:pointer; 
+        color:#777; 
+        transition:color 0.2s; 
+      }
+      .toggle-eye:hover { 
+        color:rgb(50,100,230); 
+      }
+      .toggle-eye svg { 
+        width:25px; 
+        height:25px; 
+        display:block; 
+      }
+      .switch-link { 
+        text-align:center; 
+        font-size:13px; 
+        color:#666; 
+        cursor:pointer; 
+        margin-top:10px; 
+      }
+      .switch-link:hover { 
+        text-decoration:underline; 
+        color:rgb(50,100,230); 
+      }
+      .hidden { 
+        display:none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content_container">
+      <!-- LOGIN SECTION -->
+      <div id="login_section">
+        <div id="form_container">
+          <div id="form_header_container">
+            <h2 id="form_header"> تسجيل الدخول </h2>
+          </div>
+          <div id="form_content_container">
+            <div id="form_content_inner_container">
+              <input type="email" id="login_email" placeholder="البريد الإلكتروني">
+              <div class="password-container">
+                <input type="password" id="login_password" placeholder="كلمة السر">
+                <button id="togglePasswordLogin" class="toggle-eye" type="button" aria-label="Show password (login)">
+                  <svg id="eyeOpenLogin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 10s4-6 11-6 11 6 11 6-4 6-11 6S1 10 1 10z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <svg id="eyeClosedLogin" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0112 19c-7 0-11-6-11-6a20.28 20.28 0 014.22-4.84M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 6 11 6a19.83 19.83 0 01-3.48 4.34M1 1l22 22"></path>
+                  </svg>
+                </button>
+              </div>
+              <div id="error_message"></div>
+              <div id="form_message"></div>
+              <div id="button_container">
+                <button onclick="login()">تسجيل الدخول</button>
+              </div>
+              <p class="switch-link" onclick="showSignup()"> ليس لديك حساب؟  </p>
+              <div style="margin-top:10px; text-align:center;">
+                <p id="forgot-password" style="cursor:pointer; color:blue; text-decoration:underline;">
+                  نسيت كلمة السر؟
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGNUP SECTION -->
+      <div id="signup_section" class="hidden">
+        <div id="form_container">
+          <div id="form_header_container">
+            <h2 id="form_header"> إنشاء حساب </h2>
+          </div>
+          <div id="form_content_container">
+            <div id="form_content_inner_container">
+              <input type="text" id="full_name" placeholder="الاسم الكامل">
+              <input type="email" id="email" placeholder="البريد الإلكتروني">
+              <div class="password-container">
+                <input type="password" id="password" placeholder="كلمة السر">
+                <button id="togglePasswordSignup" class="toggle-eye" type="button" aria-label="Show password (signup)">
+                  <svg id="eyeOpenSignup" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 10s4-6 11-6 11 6 11 6-4 6-11 6S1 10 1 10z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <svg id="eyeClosedSignup" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0112 19c-7 0-11-6-11-6a20.28 20.28 0 014.22-4.84M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 6 11 6a19.83 19.83 0 01-3.48 4.34M1 1l22 22"></path>
+                  </svg>
+                </button>
+              </div>
+              <input type="date" id="date_of_birth" placeholder="تاريخ الميلاد">
+              <div id="error_message_signup"></div>
+              <div id="form_message_signup"></div>
+              <div id="button_container">
+                <button onclick="register()"> إنشاء حساب </button>
+              </div>
+              <p class="switch-link" onclick="showLogin()"> لديك حساب من قبل؟ </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Firebase JS   -_-   AAAAAAAAAGH  -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+      import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDFBC74AHXmDU33Sla3rudHbkZ0yOGBcYk",
+        authDomain: "math-website-92448.firebaseapp.com",
+        projectId: "math-website-92448",
+        storageBucket: "math-website-92448.firebasestorage.app",
+        messagingSenderId: "518407052131",
+        appId: "1:518407052131:web:1999cf6ac42ae054f91156",
+        databaseURL: "https://math-website-92448-default-rtdb.firebaseio.com"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const database = getDatabase(app);
+
+      function showErrorLogin(msg){ const el=document.getElementById("error_message"); if(el){el.textContent=msg;el.style.color="red";}else alert(msg);}
+      function showSuccessLogin(msg){ const el=document.getElementById("form_message"); if(el){el.textContent=msg;el.style.color="green";}else alert(msg);}
+      function showErrorSignup(msg){ const el=document.getElementById("error_message_signup"); if(el){el.textContent=msg;el.style.color="red";}else alert(msg);}
+      function showSuccessSignup(msg){ const el=document.getElementById("form_message_signup"); if(el){el.textContent=msg;el.style.color="green";}else alert(msg);}
+
+      function getFriendlyErrorMessage(error){
+        switch(error.code){
+          case "auth/invalid-email": return "Invalid email format.";
+          case "auth/email-already-in-use": return "This email is already registered.";
+          case "auth/weak-password": return "Password must be at least 6 characters long.";
+          case "auth/user-not-found": return "No account found with this email.";
+          case "auth/wrong-password": return "Incorrect password. Please try again.";
+          case "auth/invalid-credential": return "Incorrect email or password.";
+          case "auth/too-many-requests": return "Too many failed attempts. Try again later.";
+          default: return error.message || "An unexpected error occurred. Please try again.";
+        }
+      }
+
+      function validate_email(email){ return /^[^@]+@\w+(\.\w+)+\w$/.test(email); }
+      function validate_password(p){ return p.length >=6; }
+      function validate_field(f){ return f!=null && f.length>0; }
+
+      window.register = function(){
+        const email=document.getElementById("email").value.trim();
+        const password=document.getElementById("password").value.trim();
+        const full_name=document.getElementById("full_name").value.trim();
+        const date_of_birth=document.getElementById("date_of_birth").value.trim();
+
+        showErrorSignup(""); showSuccessSignup("");
+
+        if(!validate_email(email)||!validate_password(password)){ showErrorSignup("البريد الإلكنروني أو كلمة السر خاطئة. (أقل ما يمكن: 6 حروف)"); return; }
+        if(!validate_field(full_name)||!validate_field(date_of_birth)){ showErrorSignup("الرجاء تعبة جميع الحقول"); return; }
+
+        createUserWithEmailAndPassword(auth,email,password).then((userCredential)=>{
+          const user=userCredential.user;
+          sendEmailVerification(user, {
+            url: "https://joudtabsi.github.io/Website/login.html"
+          })
+          .then(() => showSuccessSignup("✅ تم إرسال بريد الإلكتروني للتحقق"))
+          .catch(e => showErrorSignup("Failed to send verification email: " + e.message));
+          const user_data={ email, full_name, date_of_birth, last_login:Date.now() };
+          set(ref(database,"users/"+user.uid),user_data).then(()=>console.log("✅ User registered in database!")).catch(e=>showErrorSignup("Database error: "+e.message));
+        }).catch(e=>showErrorSignup(getFriendlyErrorMessage(e)));
+      };
+
+      window.login = function(){
+        const email=document.getElementById("login_email").value.trim();
+        const password=document.getElementById("login_password").value.trim();
+        showErrorLogin(""); showSuccessLogin("");
+        if(!validate_email(email)||!validate_password(password)){ showErrorLogin("البريد الإلكنروني أو كلمة السر خاطئة. (أقل ما يمكن: 6 حروف)"); return; }
+        signInWithEmailAndPassword(auth,email,password).then((userCredential)=>{
+          const user=userCredential.user;
+          if(!user.emailVerified){ showErrorLogin("⚠️ لم يتم التحقق من بريدك الإلكتروني. الرجاء التحقق من البريد الإلكتروني"); return; }
+          update(ref(database,"users/"+user.uid),{ last_login:Date.now() }).then(()=>console.log("✅ User logged in and database updated!")).catch(e=>showErrorLogin("Database error: "+e.message));
+          showSuccessLogin("✅ Logged in successfully!");
+          setTimeout(()=>{ window.location.href="/Website/index.html"; },800);
+        }).catch(e=>showErrorLogin(getFriendlyErrorMessage(e)));
+      };
+
+      document.getElementById("forgot-password").addEventListener("click",()=>{
+        const email=document.getElementById("login_email").value.trim();
+        showErrorLogin(""); showSuccessLogin("");
+        if(!validate_email(email)){ showErrorLogin("الرجاء إدخال بريد إلكتروني صحيح"); return; }
+        sendPasswordResetEmail(auth,email).then(()=>showSuccessLogin("📧 تم إرسال رسالة على البريد الإلكتروني لتغيير كلمة السر")).catch(e=>showErrorLogin("❌ Error: "+e.message));
+      });
+
+      function attachToggle(btnId,inputId,eyeOpenId,eyeClosedId){
+        const btn=document.getElementById(btnId), input=document.getElementById(inputId),
+              eyeOpen=document.getElementById(eyeOpenId), eyeClosed=document.getElementById(eyeClosedId);
+        btn.addEventListener("click",()=>{ const isP=input.type==="password"; input.type=isP?"text":"password"; eyeOpen.style.display=isP?"none":"block"; eyeClosed.style.display=isP?"block":"none"; });
+      }
+      attachToggle("togglePasswordLogin","login_password","eyeOpenLogin","eyeClosedLogin");
+      attachToggle("togglePasswordSignup","password","eyeOpenSignup","eyeClosedSignup");
+
+      window.showSignup=function(){ document.getElementById("login_section").classList.add("hidden"); document.getElementById("signup_section").classList.remove("hidden"); showErrorLogin(""); showSuccessLogin(""); showErrorSignup(""); showSuccessSignup(""); };
+      window.showLogin=function(){ document.getElementById("signup_section").classList.add("hidden"); document.getElementById("login_section").classList.remove("hidden"); showErrorLogin(""); showSuccessLogin(""); showErrorSignup(""); showSuccessSignup(""); };
+
+      document.querySelectorAll("input").forEach(input=>input.addEventListener("input",()=>{
+        showErrorLogin(""); showSuccessLogin(""); showErrorSignup(""); showSuccessSignup("");
+      }));
+
+      const inputs=Array.from(document.querySelectorAll("input"));
+      inputs.forEach((input,index)=>input.addEventListener("keydown",(e)=>{ if(e.key==="Enter"){ e.preventDefault(); for(let i=index+1;i<inputs.length;i++){ const nextInput=inputs[i]; if(nextInput.offsetParent!==null){ nextInput.focus(); return; } } const loginVisible=document.getElementById("login_section").classList.contains("hidden")===false; if(loginVisible) login(); else register(); } }));
+    </script>
+  </body>
+</html>
